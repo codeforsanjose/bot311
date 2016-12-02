@@ -1,0 +1,12 @@
+{
+  "name": "bot311",
+  "version": "1.0.0",
+  "description": "Open 311 bot using the Microsoft Bot Framework",
+  "main": "app.js",
+  "author": "Clarence Leung <contact@clarle.com>",
+  "license": "MIT",
+  "dependencies": {
+    "botbuilder": "^3.4.4",
+    "restify": "^4.3.0"
+  }
+}
