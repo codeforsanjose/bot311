@@ -1,7 +1,7 @@
 const restify = require('restify');
 const builder = require('botbuilder');
 
-const CONFIG = require('./config');
+const config = require('./config');
 
 //=========================================================
 // Bot Setup
