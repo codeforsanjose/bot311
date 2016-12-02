@@ -23,7 +23,7 @@ const bot = new builder.UniversalBot(connector);
 
 // Serve a static web page
 server.get(/.*/, restify.serveStatic({
-    'directory': '.',
+    'directory': './landing',
     'default': 'index.html'
 }));
 
