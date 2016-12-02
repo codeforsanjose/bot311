@@ -37,7 +37,7 @@ server.post('/api/messages', connector.listen());
 bot.dialog('/', [
     function (session) {
         builder.Prompts.choice(session, "What would you like to do today?", [
-            "Look at nearby issues",
+            "See nearby issues",
             "Report an issue",
             "Track my issues"
         ]); 
