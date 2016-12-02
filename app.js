@@ -18,6 +18,13 @@ const connector = new builder.ChatConnector({
 });
 
 const bot = new builder.UniversalBot(connector);
+
+// Serve a static web page
+server.get(/.*/, restify.serveStatic({
+    'directory': '.',
+    'default': 'index.html'
+}));
+
 server.post('/api/messages', connector.listen());
 
 //=========================================================
