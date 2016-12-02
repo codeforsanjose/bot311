@@ -1,7 +1,8 @@
+const fs      = require('fs');
 const restify = require('restify');
 const builder = require('botbuilder');
 
-const config = require('./config');
+const config = fs.existsSync('./config/index.js') ? require('./config') : {};
 
 //=========================================================
 // Bot Setup
