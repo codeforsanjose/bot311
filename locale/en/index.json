@@ -1,0 +1,6 @@
+{
+    "initial_prompt": "What would you like to do today?",
+    "nearby_choice": "See nearby issues",
+    "report_choice": "Report an issue",
+    "track_choice": "Track an issue"
+}

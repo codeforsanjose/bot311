@@ -20,7 +20,11 @@ const connector = new builder.ChatConnector({
     appPassword : process.env.MICROSOFT_BOT_APP_PASSWORD || config.MICROSOFT_BOT_APP_PASSWORD
 });
 
-const bot = new builder.UniversalBot(connector);
+const bot = new builder.UniversalBot(connector, {
+    localizerSettings: {
+        defaultLocale: 'en'
+    }
+});
 
 // Serve a static web page
 server.get(/.*/, restify.serveStatic({
@@ -36,17 +40,15 @@ server.post('/api/messages', connector.listen());
 
 bot.dialog('/', [
     function (session) {
-        builder.Prompts.choice(session, "What would you like to do today?", [
-            "See nearby issues",
-            "Report an issue",
-            "Track my issues"
-        ]); 
+        builder.Prompts.choice(session, "initial_prompt", [
+            "nearby_choice",
+            "report_choice",
+            "track_choice"
+        ]);
     },
     function (session, results) {
         if (results.response) {
-            session.send('not ok');
-        } else {
-            session.send("ok");
+            session.send(results.response.entity);
         }
     }
 ]);
