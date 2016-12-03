@@ -8,6 +8,7 @@
   "dependencies": {
     "axios": "^0.15.3",
     "botbuilder": "^3.4.4",
+    "lodash": "^4.17.2",
     "restify": "^4.3.0"
   }
 }

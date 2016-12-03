@@ -1,8 +1,14 @@
 const fs      = require('fs');
+
+const _       = require('lodash');
 const restify = require('restify');
 const builder = require('botbuilder');
 
 const config = fs.existsSync('./config/index.js') ? require('./config') : {};
+
+const NearbyDialog = require('./dialogs/nearby');
+const ReportDialog = require('./dialogs/report');
+const TrackDialog  = require('./dialogs/track');
 
 //=========================================================
 // Bot Setup
@@ -47,8 +53,22 @@ bot.dialog('/', [
         ]);
     },
     function (session, results) {
-        if (results.response) {
-            session.send(results.response.entity);
+        const mainDialogs = {
+            "nearby_choice": "/nearby",
+            "report_choice": "/report",
+            "track_choice" : "/track"
+        };
+        const mainChoice = _.get(results, 'response.entity');
+        const nextDialog = mainDialogs[mainChoice];
+
+        if (nextDialog) {
+            session.beginDialog(nextDialog);
+        } else {
+            session.send("generic_error");
         }
     }
 ]);
+
+bot.dialog('/nearby', NearbyDialog);
+bot.dialog('/report', ReportDialog);
+bot.dialog('/track', TrackDialog);
