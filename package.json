@@ -6,6 +6,7 @@
   "author": "Clarence Leung <contact@clarle.com>",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.15.3",
     "botbuilder": "^3.4.4",
     "restify": "^4.3.0"
   }
