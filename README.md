@@ -7,8 +7,14 @@ Built with the [Microsoft Bot Framework](https://dev.botframework.com/) and comp
 
 ## Install
 
+install nodejs
+https://nodejs.org/en/
+
 [TODO]
 
+
 ## Getting Started
+
+Clone to local drive
 
 [TODO]
