@@ -45,7 +45,7 @@ module.exports = [
                 session.endDialog();
             })
             .catch((err) => {
-                // Handle error
+                session.endDialog();
             });
     }
 ];
