@@ -1,5 +1,5 @@
 const axios  = require('axios');
-const config = require('../config');
+const config = fs.existsSync('../config/index.js') ? require('../config') : {};
 
 const api = axios.create({
     baseURL: process.env.OPEN_311_URL || config.OPEN_311_URL

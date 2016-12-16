@@ -4,7 +4,7 @@ const qs      = require('querystring');
 const _       = require('lodash');
 const builder = require('botbuilder');
 
-const config  = require('../config');
+const config  = fs.existsSync('../config/index.js') ? require('../config') : {};
 const api     = require('../api');
 
 function getImage(request) {
