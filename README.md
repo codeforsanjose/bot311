@@ -7,14 +7,16 @@ Built with the [Microsoft Bot Framework](https://dev.botframework.com/) and comp
 
 ## Install
 
-nodejs
+Node.js
 https://nodejs.org/en/
 
-[TODO]
+Microsoft Bot Framework
+https://dev.botframework.com/
 
 
 ## Getting Started
 
-Clone to local drive
-
-[TODO]
+* Clone repository and navigate to repository directory
+* Run `npm install` to install project depencies.
+* Run `node app.js` to start the bot on localhost
+* Open Bot Framework Emulator and test chatting with bot!
