@@ -1,3 +1,4 @@
+const fs     = require('fs');
 const axios  = require('axios');
 const config = fs.existsSync('../config/index.js') ? require('../config') : {};
 
