@@ -17,7 +17,7 @@ https://dev.botframework.com/
 ## Getting Started
 
 * Clone repository and navigate to repository directory
-* Rename `config/index.js.sample` to `config/index.js`. Modify the file as follows:
+* In `config` folder, create a file `index.js` with following content:
 ```
 module.exports = {
     "GOOGLE_MAPS_API_KEY": "[YOUR API KEY]",
