@@ -13,12 +13,11 @@ function getImage(request) {
     return request.media_url || url.format({
         protocol : 'https',
         host     : 'maps.googleapis.com',
-        pathname : '/maps/api/staticmap',
+        pathname : '/maps/api/streetview',
         search   : qs.stringify({
-            center : `${request.lat},${request.long}`,
-            zoom   : 17,
-            size   : '600x300',
-            key    : process.env.GOOGLE_MAPS_API_KEY || config.GOOGLE_MAPS_API_KEY
+            location : `${request.lat},${request.long}`,
+            size     : '600x300',
+            key      : process.env.GOOGLE_STREET_VIEW_API_KEY || config.GOOGLE_STREET_VIEW_API_KEY
         })
     });
 }
@@ -27,6 +26,7 @@ module.exports = [
     function (session) {
         api.getRequests()
             .then((results) => {
+                console.log(results);
                 const requests = _.chain(results).get('data').take(10).value();
                 const cards = requests.map((request) => {
                     return new builder.HeroCard(session)
@@ -42,6 +42,10 @@ module.exports = [
                     .attachments(cards);
 
                 session.send(message);
+                session.endDialog();
+            })
+            .catch((err) => {
+                // Handle error
             });
     }
 ];
