@@ -27,7 +27,7 @@ module.exports = [
     function (session) {
         api.getRequests()
             .then((results) => {
-                const requests = _.chain(results).get('data').take(20).value();
+                const requests = _.chain(results).get('data').take(10).value();
                 const cards = requests.map((request) => {
                     return new builder.HeroCard(session)
                         .title(request.service_name)
