@@ -1,5 +1,0 @@
-module.exports = {
-    "OPEN_311_API_KEY": "",
-    "MICROSOFT_BOT_APP_ID": "",
-    "MICROSOFT_BOT_APP_PASSWORD": ""
-};

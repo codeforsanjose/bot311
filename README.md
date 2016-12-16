@@ -17,6 +17,17 @@ https://dev.botframework.com/
 ## Getting Started
 
 * Clone repository and navigate to repository directory
+* Rename `config/index.js.sample` to `config/index.js`. Modify the file as follows:
+```
+module.exports = {
+    "GOOGLE_MAPS_API_KEY": "[YOUR API KEY]",
+    "GOOGLE_STREET_VIEW_API_KEY": "[YOUR API KEY]",
+    "OPEN_311_URL": "[OPEN 311 URL]",
+    "OPEN_311_API_KEY": "[YOUR API KEY]",
+    "MICROSOFT_BOT_APP_ID": "[YOUR BOT APP ID]",
+    "MICROSOFT_BOT_APP_PASSWORD": "[YOUR BOT APP PASSWORD]"
+};
+```
 * Run `npm install` to install project depencies.
 * Run `node app.js` to start the bot on localhost
 * Open Bot Framework Emulator and test chatting with bot!
