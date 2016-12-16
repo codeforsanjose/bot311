@@ -1,19 +1,46 @@
+"use strict";
+const url     = require('url');
+const qs      = require('querystring');
+const _       = require('lodash');
 const builder = require('botbuilder');
+
+const config  = require('../config');
+const api     = require('../api');
+
+function getImage(request) {
+    request = request || {};
+    return request.media_url || url.format({
+        protocol : 'https',
+        host     : 'maps.googleapis.com',
+        pathname : '/maps/api/staticmap',
+        search   : qs.stringify({
+            center : `${request.lat},${request.long}`,
+            zoom   : 17,
+            size   : '600x300',
+            key    : process.env.GOOGLE_MAPS_API_KEY || config.GOOGLE_MAPS_API_KEY
+        })
+    });
+}
 
 module.exports = [
     function (session) {
-        const card = new builder.HeroCard(session)
-            .title('Graffiti')
-            .subtitle('Intersection of Fillmore St & Geary Blvd')
-            .text('1750 Geary at Fillmore, southeast side up from corner. Graffiti on sidewalk. Offensive. Thanks.')
-            .images([
-                builder.CardImage.create(session, "http://mobile311-dev.sfgov.org/media/san_francisco/report/photos/58477e41ff035c2789f7ef7d/photo_20161206_191240.jpg")
-            ]);
+        api.getRequests()
+            .then((results) => {
+                const requests = _.chain(results).get('data').take(5).value();
+                const cards = requests.map((request) => {
+                    return new builder.HeroCard(session)
+                        .title(request.service_name)
+                        .text(request.description)
+                        .images([
+                            builder.CardImage.create(session, getImage(request))
+                        ]);
+                });
 
-        const message = new builder.Message(session)
-            .attachmentLayout(builder.AttachmentLayout.carousel)
-            .attachments([card, card, card]);
+                const message = new builder.Message(session)
+                    .attachmentLayout(builder.AttachmentLayout.carousel)
+                    .attachments(cards);
 
-        session.send(message);
+                session.send(message);
+            });
     }
 ];
